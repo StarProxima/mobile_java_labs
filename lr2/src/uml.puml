@@ -1,0 +1,53 @@
+@startuml
+
+abstract class Account {
+    - balance: double
+    - scanner: Scanner
+
+    + Account(balance: double)
+    + getBalance(): double
+    + deposit(amount: double): void
+    + withdraw(amount: double): void
+    + checkBalance(): void
+    + close(): void
+    + getScanner(): Scanner
+    + equals(o: Object): boolean
+    + toString(): String
+}
+
+class SalaryAccount {
+    + SalaryAccount(balance: double)
+    + performAutopayments(): void
+    + equals(o: Object): boolean
+    + toString(): String
+}
+
+class CreditAccount {
+    - interest: double
+    - maturity: int
+
+    + CreditAccount(balance: double, interest: double, maturity: int)
+    + getInterest(): double
+    + getMaturity(): int
+    + checkMaturityDate(): void
+    + equals(o: Object): boolean
+    + toString(): String
+}
+
+class DepositAccount {
+    - interest: double
+    - depositPeriod: int
+
+    + DepositAccount(balance: double, interest: double, depositPeriod: int)
+    + getInterest(): double
+    + getDepositPeriod(): int
+    + calculateInterestForElapsedPeriod(): void
+        + equals(o: Object): boolean
+    + toString(): String
+}
+
+Account <|-- SalaryAccount
+Account <|-- CreditAccount
+Account <|-- DepositAccount
+
+@enduml
