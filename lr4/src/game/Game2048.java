@@ -16,7 +16,7 @@ public class Game2048 extends JPanel {
             new Color(0xe7b08e), new Color(0xe7bf8e), new Color(0xffc4c3), new Color(0xE7948e), new Color(0xbe7e56),
             new Color(0xbe5e56), new Color(0x9c3931), new Color(0x701710) };
 
-    static final int TARGET = 32;
+    static final int TARGET = 256;
 
     static int highest;
     static int score;
@@ -123,7 +123,7 @@ public class Game2048 extends JPanel {
                 g.drawString("Победа!", 390, 350);
 
             } else if (gamestate == State.OVER)
-                g.drawString("Игра закончена!", 400, 350);
+                g.drawString("Игра закончена!", 370, 350);
 
             g.setColor(gridColor);
             g.drawString("Нажмите, чтобы начать новую игру.", 270, 470);
@@ -272,35 +272,4 @@ public class Game2048 extends JPanel {
             f.setVisible(true);
         });
     }
-}
-
-class Tile {
-    private boolean merged;
-    private int value;
-
-    Tile(int val) {
-        value = val;
-    }
-
-    int getValue() {
-        return value;
-    }
-
-    void setMerged(boolean m) {
-        merged = m;
-    }
-
-    boolean canMergeWith(Tile other) {
-        return !merged && other != null && !other.merged && value == other.getValue();
-    }
-
-    int mergeWith(Tile other) {
-        if (canMergeWith(other)) {
-            value *= 2;
-            merged = true;
-            return value;
-        }
-        return -1;
-    }
-
 }
